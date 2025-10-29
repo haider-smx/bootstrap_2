@@ -1,0 +1,504 @@
+/* Custom styles for this project */
+
+/* Azul aún más intenso (muy fuerte) personalizado */
+.bg-strong {
+  background-color: #001f4b !important; /* azul muy intenso */
+}
+
+/* Tipografía y estilos para texto central (casellas) */
+body {
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Navbar base: unificado para todas las páginas
+   Igual que la apariencia de la página Contacte: degradado oscuro, borde
+   inferior sutil y efecto blur. Padding controlado para mantener altura. */
+.navbar {
+  background: linear-gradient(135deg, #001f4b, #001233);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  padding: 0.75rem 0;
+}
+.navbar .container-fluid {
+  max-width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: transform 220ms ease, color 220ms ease;
+}
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+/* Navbar link underline / active-state styles (shared across pages)
+   - The underline is STATIC (no moving animation). On hover it appears
+     smoothly. The active link gets a slightly larger, bolder text and
+     a thicker underline so the current page is clearly indicated.
+   Centralized here so every page that loads this stylesheet matches. */
+.navbar .nav-link {
+  position: relative;
+  color: rgba(255,255,255,0.92);
+  padding-bottom: .45rem; /* space for the underline */
+  transition: color 180ms ease, font-size 180ms ease, font-weight 180ms ease;
+}
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.04rem;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0057b7 0%, #001f4b 100%);
+  border-radius: 3px;
+  transition: width 220ms ease, height 220ms ease, background-color 220ms ease;
+}
+/* Hover / focus: show a neat static underline */
+.navbar .nav-link:hover::after,
+.navbar .nav-link:focus::after {
+  width: 56px;
+}
+/* Change link color on hover/focus for a pleasing effect across pages */
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: #9fd6ff;
+}
+/* Active page: stronger visual — slightly larger/bolder text + thicker underline */
+.navbar .nav-link.active {
+  font-weight: 700;
+  font-size: 1.03rem;
+  color: #ffffff;
+}
+.navbar .nav-link.active::after {
+  width: 64px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #0077dd 0%, #00325a 100%);
+}
+
+/* Brand styling for "H4ID3R" across all pages
+   - slightly bolder (negro) appearance by default
+   - on hover (cuando pongan la flecha/cursor) cambia a un degradado elegante
+   - applies to <p> or <span> inside .navbar-brand without editing HTML */
+.navbar-brand p, .navbar-brand span, .navbar-brand .brand-text {
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.6px;
+  line-height: 1;
+  transition: transform 180ms ease, color 180ms ease, background 260ms ease;
+  -webkit-font-smoothing: antialiased;
+}
+.navbar-brand:hover p, .navbar-brand:hover span, .navbar-brand .brand-text:hover {
+  /* Gradient text using background-clip for a subtle but modern color change */
+  background: linear-gradient(90deg, #9fd6ff 0%, #ffffff 60%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translateY(-2px) scale(1.02);
+  text-shadow: 0 6px 22px rgba(0,87,183,0.08);
+}
+
+/* Toggler (icon) subtle hover/focus feedback so the small "flecha" or icon
+   gives color feedback when the user moves the cursor */
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.08);
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+.navbar-toggler:hover {
+  background: rgba(255,255,255,0.02);
+}
+.navbar-toggler:focus {
+  box-shadow: 0 6px 20px rgba(0,87,183,0.08);
+}
+.navbar-dark .navbar-toggler-icon {
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.35));
+}
+
+/* Footer: make text/links respond similarly so the bottom bar feels cohesive
+   across the three pages */
+footer, footer a {
+  color: rgba(255,255,255,0.9);
+  transition: color 180ms ease, transform 160ms ease;
+}
+footer:hover, footer a:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Auth panel / transparent modal styles for Contacte page */
+.auth-hero {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+.auth-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  pointer-events: none;
+}
+.auth-panel {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+  overflow: hidden;
+}
+.auth-panel.full {
+  max-width: 1200px;
+  padding: 2rem;
+}
+.auth-panel .tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.auth-panel .tab-btn {
+  flex: 1 1 auto;
+  padding: 0.6rem 0.9rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.9);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 180ms ease, transform 160ms ease, color 160ms ease;
+}
+.auth-panel .tab-btn.active {
+  background: linear-gradient(90deg,#0057b7 0%, #002a4a 100%);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,87,183,0.18);
+}
+.auth-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+.auth-column { padding: 0.5rem; }
+.auth-form { display: flex; flex-direction: column; gap: 0.65rem; }
+.auth-form .form-control { background: rgba(255,255,255,0.02); color: #fff; border: 1px solid rgba(255,255,255,0.06); }
+.auth-form .btn { margin-top: 0.25rem; }
+.auth-info { color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+
+@media (max-width: 900px) {
+  .auth-body { grid-template-columns: 1fr; }
+  .auth-panel { padding: 1rem; }
+}
+
+/* Floating lights/background animation (subtle) */
+.auth-hero .floating-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(34px);
+  opacity: 0.28;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.auth-hero .light-1 { width: 260px; height: 260px; background: radial-gradient(circle at 30% 30%, #7fd3ff, transparent 40%); top: 8%; left: 6%; animation: floatX 14s ease-in-out infinite; }
+.auth-hero .light-2 { width: 160px; height: 160px; background: radial-gradient(circle at 50% 50%, #00b0ff55, transparent 45%); bottom: 12%; right: 8%; animation: floatY 18s ease-in-out infinite; }
+.auth-hero .light-3 { width: 200px; height: 200px; background: radial-gradient(circle at 50% 40%, #9fd6ff33, transparent 42%); top: 30%; right: 22%; animation: floatX 22s ease-in-out infinite; }
+
+@keyframes floatX {
+  0% { transform: translateX(0) translateY(0) scale(1); }
+  50% { transform: translateX(18px) translateY(-8px) scale(1.05); }
+  100% { transform: translateX(0) translateY(0) scale(1); }
+}
+@keyframes floatY {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-24px) translateX(6px) scale(1.03); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
+}
+
+/* Small control inside the panel to toggle showing contact form */
+.auth-panel .show-contact {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: rgba(255,255,255,0.85);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+
+.card.bg-strong h3 {
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  margin: 0.35rem 0 0.25rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.card.bg-strong h3::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: rgba(255,255,255,0.12);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* Animación de la línea debajo del título: al hacer hover en la tarjeta
+   la línea se vuelve azul más fuerte y empieza a moverse (vaivén) */
+@keyframes line-slide {
+  0% { transform: translateX(-25%); }
+  50% { transform: translateX(25%); }
+  100% { transform: translateX(-25%); }
+}
+
+.card.bg-strong h3::after {
+  transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
+  transform: translateX(0);
+}
+
+.card.bg-strong:hover h3::after {
+  /* mantenemos la regla pero la línea interior está desactivada */
+  width: 60%;
+  background: linear-gradient(90deg, #0057b7 0%, #001f4b 100%);
+  animation: line-slide 1.2s ease-in-out infinite;
+}
+/* Línea fuera de la casilla eliminada; usamos la línea interior en h3::after */
+
+.card.bg-strong p {
+  color: rgba(255,255,255,0.92);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin: 0;
+  text-align: center;
+  max-width: 100%;
+}
+
+/* Carousel caption nicer typography */
+.carousel-caption h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.6);
+}
+
+.carousel-caption p {
+  font-size: 1rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* Carrusel: forzar tamaño uniforme y un poco más pequeño */
+.carousel-inner .carousel-item img,
+.carousel-inner .d-block.w-100 {
+  width: 100%;
+  height: 360px; /* tamaño reducido y uniforme */
+  object-fit: cover; /* recorta manteniendo proporción */
+}
+
+/* Asegurar que el contenedor no crezca demasiado */
+.carousel {
+  max-height: 360px;
+  overflow: hidden;
+}
+
+/* Ajustes responsive: en móviles hacer las imágenes más pequeñas */
+@media (max-width: 768px) {
+  .carousel-inner .carousel-item img,
+  .carousel-inner .d-block.w-100 {
+    height: 220px;
+  }
+  .carousel {
+    max-height: 220px;
+  }
+}
+
+/* Texto claro sobre fondo oscuro */
+.text-on-strong {
+  color: #ffffff !important;
+}
+
+/* Gris fuerte para el footer */
+.bg-strong-gray {
+  background-color: #2f3438 !important; /* gris fuerte */
+}
+
+.text-on-strong-gray {
+  color: #ffffff !important;
+}
+
+/* Mejora visual para las tarjetas (casellas) */
+.card.bg-strong {
+  border-radius: 0.75rem;
+  overflow: hidden; /* evita que la imagen sobresalga */
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto; /* centrar la card dentro de la columna */
+}
+
+.card-img-top {
+  height: 150px; /* altura fija para todas las imágenes */
+  width: 100%;
+  object-fit: cover; /* recorta manteniendo proporción */
+  display: block;
+  margin-bottom: 0; /* sin separación, queda pegada a la tarjeta */
+  border-radius: 0.5rem 0.5rem 0 0; /* esquinas redondeadas solo arriba */
+}
+
+.card.bg-strong .card-body {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem; /* espacio reducido entre elementos */
+  align-items: center;
+  justify-content: flex-start; /* dejar elementos en flujo natural */
+  padding: 1rem;
+  flex: 1 1 auto; /* permitir que el body ocupe espacio y empuje el botón al fondo */
+}
+
+.card.bg-strong h3 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.card.bg-strong p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  /* Mostrar todo el texto escrito en la casilla: quitar recorte */
+  max-height: none;
+  overflow: visible;
+}
+
+.card.bg-strong .btn-outline-light {
+  border-width: 1.5px;
+}
+
+.card.bg-strong:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+/* Ajuste para enlaces dentro del fondo oscuro */
+.card.bg-strong a.btn {
+  display: inline-block;
+}
+
+/* Botón azul fuerte para las tarjetas */
+.btn-strong-blue {
+  --bs-btn-bg: #0057b7;
+  --bs-btn-hover-bg: #004099;
+  --bs-btn-active-bg: #00337a;
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  color: #ffffff;
+  background-color: var(--bs-btn-bg);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background-color 150ms ease, transform 120ms ease, box-shadow 150ms ease;
+}
+
+.btn-strong-blue:hover,
+.btn-strong-blue:focus {
+  background-color: var(--bs-btn-hover-bg);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.btn-strong-blue:active {
+  background-color: var(--bs-btn-active-bg);
+  transform: translateY(1px);
+}
+
+.btn-strong-blue:focus {
+  outline: 3px solid rgba(0,123,255,0.18);
+}
+
+/* Ajuste del botón: empujar al fondo para alinear entre tarjetas */
+.card.bg-strong .card-body .btn {
+  margin-top: auto; /* empuja el botón al final del card-body */
+  margin-bottom: 0.6rem;
+}
+
+/* Botón con ancho consistente y responsive */
+.btn-strong-blue {
+  min-width: 140px;
+}
+
+@media (max-width: 576px) {
+  .btn-strong-blue {
+    min-width: 100%;
+    width: 100%;
+  }
+  .card.bg-strong {
+    min-height: auto;
+  }
+  .card-img-top {
+    height: 120px;
+  }
+}
+
+/* Nota: las tarjetas usan layout flex-column y el body ocupa el espacio
+  disponible para que el botón quede alineado al fondo. */
+
+/* Overlay para mensaje Inici */
+.inici-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  z-index: 1100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+.inici-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.inici-message {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  background: linear-gradient(90deg, rgba(0,87,183,0.12), rgba(0,31,75,0.18));
+  box-shadow: 0 6px 28px rgba(0,0,0,0.6), 0 0 20px rgba(0,87,183,0.12) inset;
+  position: relative;
+  overflow: visible;
+}
+
+/* Efecto de luces neón en el texto */
+.inici-message {
+  text-shadow:
+    0 0 6px rgba(0,87,183,0.9),
+    0 0 18px rgba(0,87,183,0.45),
+    0 6px 18px rgba(0,0,0,0.6);
+  animation: neonPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0% { filter: drop-shadow(0 0 6px rgba(0,87,183,0.6)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 18px rgba(0,87,183,0.95)); transform: scale(1.02); }
+  100% { filter: drop-shadow(0 0 6px rgba(0,87,183,0.6)); transform: scale(1); }
+}
+
+/* Small screens: slightly smaller message */
+@media (max-width: 576px) {
+  .inici-message { font-size: 1.15rem; padding: 0.8rem 1rem; }
+}
