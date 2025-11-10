@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>H4ID3R — Ingeniería & Artesanía Digital</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Minimal reset + styles -->
+  <style>
+    :root{
+      --bg:#fff;
+      --text:#0b0b0b;
+      --muted:#6b6b6b;
+      --accent:#0b67a3; /* azul elegante */
+      --max-width:1200px;
+      --radius:12px;
+      --gap:28px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:0 24px;
+    }
+
+    /* NAV */
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:24px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:var(--text);
+    }
+    .brand .logo{
+      width:48px;
+      height:48px;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 6px 20px rgba(11,103,163,0.08);
+    }
+    .brand h1{
+      margin:0;
+      font-family:"Playfair Display";
+      font-size:20px;
+      letter-spacing:1px;
+      font-weight:700;
+    }
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .nav-links a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+      padding:8px 12px;
+      border-radius:8px;
+    }
+    .nav-links a.cta{
+      background:var(--accent);
+      color:white;
+      box-shadow:0 6px 18px rgba(11,103,163,0.18);
+    }
+
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 460px;
+      gap:36px;
+      align-items:center;
+      padding:36px 0 72px;
+    }
+    .hero-left{
+      padding-right:12px;
+    }
+    .eyebrow{
+      font-size:13px;
+      color:var(--accent);
+      font-weight:600;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+    .hero h2{
+      font-family:"Playfair Display";
+      font-size:48px;
+      margin:0 0 16px;
+      line-height:1.02;
+    }
+    .hero p.lead{
+      color:var(--muted);
+      font-size:16px;
+      margin:0 0 24px;
+      max-width:60ch;
+    }
+    .hero-actions{display:flex;gap:12px}
+    .btn{
+      padding:12px 18px;
+      border-radius:10px;
+      border:1px solid rgba(11,103,163,0.08);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+    }
+    .btn.primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 8px 30px rgba(11,103,163,0.18);
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(0,0,0,0.06);
+    }
+
+    .hero-right{
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(15,15,15,0.08);
+    }
+    .hero-right img{display:block;width:100%;height:100%;object-fit:cover;min-height:320px}
+
+    /* Models / Proyectos */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:var(--gap);
+      margin:48px 0 72px;
+    }
+    .card{
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 10px 30px rgba(10,10,10,0.04);
+      transition:transform .36s ease, box-shadow .36s ease;
+    }
+    .card:hover{transform:translateY(-8px); box-shadow:0 22px 58px rgba(11,103,163,0.08)}
+    .card img{width:100%;height:200px;object-fit:cover;display:block}
+    .card-body{padding:20px}
+    .card h3{margin:0 0 8px;font-size:18px;font-family:"Playfair Display"}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Craftsmanship / About */
+    .about{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      padding:48px 0;
+    }
+    .about .text{flex:1}
+    .about .media{flex:1;border-radius:12px;overflow:hidden;box-shadow:0 18px 48px rgba(11,103,163,0.06)}
+    .about img{width:100%;height:100%;object-fit:cover;min-height:280px}
+
+    /* Footer */
+    footer{
+      border-top:1px solid #f0f0f0;
+      padding:25px 0;
+      color:var(--muted);
+      font-size:14px;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width:1024px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .nav-links{display:none}
+      .grid{grid-template-columns:1fr}
+      .hero h2{font-size:32px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- NAV -->
+    <nav aria-label="Navegación principal">
+      <a class="brand" href="#">
+        <div class="logo">
+          <!-- imagen logo -->
+          <img src="IMG/Cybercrime.webp" alt="H4ID3R logo" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <h1>H4ID3R</h1>
+      </a>
+
+      <div class="nav-links" role="navigation" aria-label="Enlaces principales">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#artesania">Artesanía</a>
+        <a href="#contacto" class="cta">Contacto</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="eyebrow">Ingeniería & Artesanía Digital</div>
+        <h2 id="hero-title">Diseño, seguridad y proyectos a medida — creados para durar.</h2>
+        <p class="lead">H4ID3R es un estudio que mezcla la precisión técnica con un diseño excepcional. Ofrecemos auditorías, proyectos de seguridad y desarrollos digitales hechos con meticulosidad y acabado artesanal.</p>
+
+        <div class="hero-actions">
+          <a href="#proyectos" class="btn primary">Ver proyectos</a>
+          <a href="#contacto" class="btn ghost">Solicitar presupuesto</a>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="false">
+        <!-- Imagen principal destacada. Reemplaza por una foto en alta resolución -->
+        <img src="IMG/hero-luxury.jpg" alt="Imagen destacada — H4ID3R">
+      </div>
+    </section>
+
+    <!-- Proyectos / Modelos -->
+    <section id="proyectos" aria-labelledby="proyectos-title">
+      <div style="display:flex;align-items:end;justify-content:space-between;">
+        <div>
+          <h2 id="proyectos-title" style="font-family:'Playfair Display';margin:0;font-size:28px">Proyectos destacados</h2>
+          <p style="margin:6px 0 0;color:var(--muted)">Selección de trabajos con enfoque en calidad, privacidad y diseño atemporal.</p>
+        </div>
+        <div><a href="#" class="btn">Ver catálogo</a></div>
+      </div>
+
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <img src="IMG/projecte.jpg" alt="Proyecto 1 — Auditoría de seguridad">
+          <div class="card-body">
+            <h3>Auditoría de seguridad corporativa</h3>
+            <p>Evaluación completa de infraestructuras, pruebas de penetración y plan de remediación con reportes ejecutivos y técnicos.</p>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img src="IMG/cyberpunk-futuristic-computer-interfaces-wallpaper-preview.jpg" alt="Proyecto 2 — Plataforma a medida">
+          <div class="card-body">
+            <h3>Plataforma a medida</h3>
+            <p>Desarrollo backend y frontend con control de acceso, encriptación avanzada y experiencia de usuario premium.</p>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <img src="IMG/AIhackers.jpeg" alt="Proyecto 3 — Integración IA">
+          <div class="card-body">
+            <h3>Integración de IA responsable</h3>
+            <p>Prototipos de IA enfocados en automatización segura e interpretabilidad para decisiones empresariales.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Artesanía / Sobre -->
+    <section id="artesania" class="about" aria-labelledby="about-title">
+      <div class="text">
+        <h2 id="about-title" style="font-family:'Playfair Display';margin-top:0">Artesanía y precisión</h2>
+        <p style="color:var(--muted);max-width:60ch">
+          Cada proyecto es tratado como una pieza única: investigación inicial, prototipado rápido y un acabado técnico impecable.
+          Ofrecemos documentación detallada, formación y seguimiento post‑entrega. Trabajamos solo con prácticas éticas y legales.
+        </p>
+
+        <ul style="color:var(--muted);margin-top:18px;padding-left:18px">
+          <li>Consultoría integral en ciberseguridad y arquitectura</li>
+          <li>Desarrollo de soluciones privadas y alojadas</li>
+          <li>Informes y formación para equipos técnicos</li>
+        </ul>
+      </div>
+
+      <div class="media">
+        <img src="IMG/imge 3.webp" alt="Taller / oficina H4ID3R">
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" style="padding:36px 0;">
+      <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap;">
+        <div style="flex:1;min-width:240px">
+          <h2 style="margin-top:0;font-family:'Playfair Display'">Contacto</h2>
+          <p style="color:var(--muted)">¿Deseas un proyecto con acabado premium? Cuéntame tu idea y preparamos una propuesta.</p>
+
+          <p style="margin:12px 0"><strong>Email:</strong> <a href="mailto:contacto@h4id3r.example">contacto@h4id3r.example</a></p>
+          <p style="margin:0"><strong>Teléfono:</strong> +34 600 000 000</p>
+        </div>
+
+        <!-- Simple formulario (no funcional sin backend) -->
+        <form style="flex:1;min-width:280px;max-width:520px;background:#fafafa;padding:18px;border-radius:10px;box-shadow:0 8px 28px rgba(11,103,163,0.04);">
+          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Nombre</label>
+          <input type="text" placeholder="Tu nombre" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e9e9e9;margin-bottom:12px">
+
+          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Email</label>
+          <input type="email" placeholder="tu@correo.com" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e9e9e9;margin-bottom:12px">
+
+          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Mensaje</label>
+          <textarea placeholder="Breve descripción del proyecto" rows="4" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e9e9e9;margin-bottom:12px"></textarea>
+
+          <button class="btn primary" type="button">Enviar solicitud</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+   <!-- Footer -->
+    <footer>
+      <div>© 2025 H4ID3R — Todos los derechos reservados - Barres i Ones</div>
+    </footer>
+  <!-- Small JS: smooth scroll -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  </script>
+</body>
+</html>

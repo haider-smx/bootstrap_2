@@ -191,19 +191,19 @@
     </div>
     
     <script>
-    // Limpiar formulario al enviar
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', function(e) {
-      setTimeout(() => {
-        form.reset(); // limpia los campos
-      }, 100); // pequeño delay para permitir envío
-    });
+      // Limpiar formulario al enviar
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', function(e) {
+        setTimeout(() => {
+          form.reset(); // limpia los campos
+        }, 100); // pequeño delay para permitir envío
+      });
 
-    // Limpiar campos al recargar la página
-    window.addEventListener('load', function() {
-      form.reset();
-    });
-  </script>
+      // Limpiar campos al recargar la página
+      window.addEventListener('load', function() {
+        form.reset();
+      });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>
